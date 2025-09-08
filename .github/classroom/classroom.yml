@@ -1,0 +1,69 @@
+
+
+name: Autograding
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  autograde:
+    runs-on: ubuntu-latestname: Autograding Summary
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  autograde:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install g++
+      run: sudo apt-get install g++
+
+    - name: Compile C++ code
+      run: g++ main.cpp homework1.cpp -o homework1.exe
+
+    - name: Test1
+      uses: actions/checkout@v4
+       with:
+         test-name: Test1
+         id: test1
+         command: "./test.sh"
+         input: 1
+         expected-output: "Test 1: PASS"
+         comparison-method: exact
+         timeout: 5
+         points: 5
+
+    - name: Test2
+      uses: actions/checkout@v4
+       with:
+         test-name: Test2
+         id: test2
+         command: "./test.sh"
+         input: 2
+         expected-output: "Test 2: PASS"
+         comparison-method: exact
+         timeout: 5
+         points: 5
+         
+    - name: Test3
+      uses: actions/checkout@v4
+       with:
+         test-name: Test3
+         id: test3
+         command: "./test.sh"
+         input: 3
+         expected-output: "Test 3: PASS"
+         comparison-method: exact
+         timeout: 5
+         points: 5
