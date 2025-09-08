@@ -9,7 +9,7 @@ if "%~1"=="" (
 )
 
 for %%i in (!args!) do (
-    g++ main.cpp homework1.cpp -o homework1.exe
+    g++ main.cpp homework1.cpp -o main.exe
     main.exe %%i > Test\output%%i.txt
     fc Test\output%%i.txt Test\expected%%i.txt > nul
     if errorlevel 1 (
